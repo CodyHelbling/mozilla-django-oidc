@@ -186,7 +186,7 @@ class OIDCAuthenticationRequestView(View):
         params = {
             "response_type": "code",
             "scope": self.get_settings("OIDC_RP_SCOPES", "openid email"),
-            "client_id": self.OIDC_RP_CLIENT_ID,
+            "client_id": request.GET.get("client_id", self.OIDC_RP_CLIENT_ID),
             "redirect_uri": absolutify(request, reverse(reverse_url)),
             "state": state,
         }
